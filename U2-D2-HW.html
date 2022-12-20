@@ -83,7 +83,6 @@
             color: purple;
         }
 
-        
     </style>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet" />
 </head>
@@ -427,6 +426,110 @@
 
         // Write a JavaScript functionality that will create an alert with the name of the author every time the user hovers the mouse on an author's name
         // EXTRA Write a JavaScript functionality that will remove the corresponding parent card from the DOM, upon clicking on their “Continue reading” link
+        
+function addNewLink (title) {
+    let newLink = document.createElement("span");
+    newLink.innerHTML = title;
+    document.querySelector("nav").appendChild(newLink)
+}
+
+function changeMainHeadingColor (color) {
+    document.querySelector("h1").style.color = color;
+}
+
+function changeJumbotronBG (color) {
+    document.querySelector(".jumbotron").style.backgroundColor = color;
+}
+
+function removeElonMusk () {
+    document.querySelector(".p-4:nth-of-type(3) .list-unstyled li:nth-of-type(2) a").innerText= "";
+}
+
+function removeFirst50Char () {
+    let deletedParagraph1 = document.querySelector(".blog-post p:nth-of-type(3)")
+    deletedParagraph1 = deletedParagraph1.innerText.substring(50);
+    document.querySelector(".blog-post p:nth-of-type(3)").innerText = "";
+    document.querySelector(".blog-post p:nth-of-type(3)").innerText = deletedParagraph1;
+
+    let deletedParagraph2 = document.querySelector(".blog-post:nth-of-type(2) p:nth-of-type(2)")
+    console.log(deletedParagraph2)
+    deletedParagraph2 = deletedParagraph2.innerText.substring(50);
+    document.querySelector(".blog-post:nth-of-type(2) p:nth-of-type(2)").innerText = "";
+    document.querySelector(".blog-post:nth-of-type(2) p:nth-of-type(2)").innerText = deletedParagraph2;
+
+    let deletedParagraph3 = document.querySelector(".blog-post:nth-of-type(3) p:nth-of-type(2)")
+    deletedParagraph3 = deletedParagraph3.innerText.substring(50);
+    document.querySelector(".blog-post:nth-of-type(3) p:nth-of-type(2)").innerText = "";
+    document.querySelector(".blog-post:nth-of-type(3) p:nth-of-type(2)").innerText = deletedParagraph3;
+}
+
+function newBlogPost() {
+    let postDiv = document.createElement("div")
+    let postTitle = document.createElement("h2")
+    let postText = document.createElement("p")
+
+    postTitle.innerText = "Sample Title"
+    postText.innerText = "Lorem ipsum long text emmet etc"
+
+    postDiv.classList.add(".blog-post")
+    postTitle.classList.add("blog-post-title")
+    
+    postDiv.appendChild(postTitle)
+    postDiv.appendChild(postText)
+
+    document.querySelector(".blog-post:nth-of-type(3)").appendChild(postDiv)
+}
+
+function removeLastBlogPost() {
+    let olderBtn = document.querySelector(".blog-pagination .btn-outline-primary")
+    olderBtn.addEventListener('click', function()
+    {
+        let blogArea = document.querySelector(".col-md-8.blog-main");
+        let blogsNode = document.querySelectorAll(".col-md-8.blog-main .blog-post:nth-of-type(n)");
+
+        blogArea.removeChild(blogsNode[blogsNode.length - 1]);
+    }
+    )
+}
+removeLastBlogPost()
+
+function createAlert () {
+    let authorsNode = document.querySelectorAll(".blog-post .blog-post-meta a")
+
+    for (i = 0; i<authorsNode.length; i++)
+
+    authorsNode[i].addEventListener("mouseover", function()
+    {
+        alert("You hovered the author!")
+    }
+    )
+}
+createAlert ()
+
+function removeCard () {
+    let card1 = document.querySelector(".jumbotron .lead a")
+    let container = document.querySelector(".container")
+    card1.addEventListener("click", function()
+    {
+        container.removeChild(document.querySelector(".jumbotron"))
+    }
+    )
+
+    let card2 = document.querySelector(".col-md-6:nth-of-type(1) .stretched-link")
+    console.log(card2)
+    card2.addEventListener("click")
+
+
+    let card3 = document.querySelector(".col-md-6:nth-of-type(2) .stretched-link")
+    console.log(card3)
+}
+removeCard ()
+
+window.onload;{
+    removeElonMusk () 
+}
+
+
     </script>
 </body>
 
