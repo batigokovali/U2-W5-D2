@@ -34,51 +34,62 @@
                 font-size: 3.5rem;
             }
         }
-
+        /* 1*/
         h1 {
             color:blueviolet;
         }
+
+        /* 2*/
 
         nav span {
             color:red;
         }
 
+        /* 3*/
         .lead a {
             color: red;
         } 
 
+
+        /* 4*/
         .blog-post:nth-of-type(1) {
             background-color: aqua;
         }
 
+
+        /* 5*/
         .blog-post hr {
             background-color: red;
         }
 
+
+        /* 6*/
         nav span:nth-of-type(2n) {
             color: blue;
         }
 
+        /* 7*/
         .p-4 .list-unstyled.mb-0 li a{
             color: red;
         }
 
+        /* 8*/
         .blog-post:nth-of-type(2) .blog-post-meta a{
             color: pink;
         }
-
+        /* 9*/
         .blog-post:nth-of-type(3) ul li:nth-of-type(2)  {
             color: blue;
         }
-
+        /* 10*/
         .float-right.mb-3.mr-3 {
             color:aqua
         }
-
+        /* 11*/
         .blog-pagination .btn-outline-secondary{
             color: aqua;
         }
-
+        /* 12*/
         footer .text-center a:nth-of-type(2) {
             color: purple;
         }
@@ -414,37 +425,30 @@
     <a href="#" class="float-right mb-3 mr-3">Back to top</a>
     <script>
         /* JS Exercises should go here */
-        // Write a JavaScript functionality to add a new link into the navbar
-        // Write a JavaScript functionality to change the color of the main heading title
-        // Write a JavaScript functionality to change the background of the jumbotron
 
-        // Write a JavaScript functionality to remove the “twitter” link under the “Elsewhere” section in the aside element. It should happen when the page loads, automatically
-
-        // Write a JavaScript functionality to remove the first 50 characters in the first paragraph for every blog post
-        // Write a JavaScript functionality to add a new Blog Post (div with title and text)
-        // Write a JavaScript functionality to remove the last Blog Post when the user clicks on the "Older" button
-
-        // Write a JavaScript functionality that will create an alert with the name of the author every time the user hovers the mouse on an author's name
-        // EXTRA Write a JavaScript functionality that will remove the corresponding parent card from the DOM, upon clicking on their “Continue reading” link
-        
+        // Write a JavaScript functionality to add a new link into the navbar 
 function addNewLink (title) {
     let newLink = document.createElement("span");
     newLink.innerHTML = title;
     document.querySelector("nav").appendChild(newLink)
 }
 
+// Write a JavaScript functionality to change the color of the main heading title
 function changeMainHeadingColor (color) {
     document.querySelector("h1").style.color = color;
 }
 
+// Write a JavaScript functionality to change the background of the jumbotron
 function changeJumbotronBG (color) {
     document.querySelector(".jumbotron").style.backgroundColor = color;
 }
 
+// Write a JavaScript functionality to remove the “twitter” link under the “Elsewhere” section in the aside element. It should happen when the page loads, automatically
 function removeElonMusk () {
     document.querySelector(".p-4:nth-of-type(3) .list-unstyled li:nth-of-type(2) a").innerText= "";
 }
 
+ // Write a JavaScript functionality to remove the first 50 characters in the first paragraph for every blog post
 function removeFirst50Char () {
     let deletedParagraph1 = document.querySelector(".blog-post p:nth-of-type(3)")
     deletedParagraph1 = deletedParagraph1.innerText.substring(50);
@@ -463,6 +467,7 @@ function removeFirst50Char () {
     document.querySelector(".blog-post:nth-of-type(3) p:nth-of-type(2)").innerText = deletedParagraph3;
 }
 
+// Write a JavaScript functionality to add a new Blog Post (div with title and text)
 function newBlogPost() {
     let postDiv = document.createElement("div")
     let postTitle = document.createElement("h2")
@@ -480,6 +485,7 @@ function newBlogPost() {
     document.querySelector(".blog-post:nth-of-type(3)").appendChild(postDiv)
 }
 
+// Write a JavaScript functionality to remove the last Blog Post when the user clicks on the "Older" button
 function removeLastBlogPost() {
     let olderBtn = document.querySelector(".blog-pagination .btn-outline-primary")
     olderBtn.addEventListener('click', function()
@@ -493,35 +499,45 @@ function removeLastBlogPost() {
 }
 removeLastBlogPost()
 
+ // Write a JavaScript functionality that will create an alert with the name of the author every time the user hovers the mouse on an author's name
 function createAlert () {
     let authorsNode = document.querySelectorAll(".blog-post .blog-post-meta a")
 
-    for (i = 0; i<authorsNode.length; i++)
-
+    for (let i = 0; i<authorsNode.length; i++)
+    {
     authorsNode[i].addEventListener("mouseover", function()
     {
-        alert("You hovered the author!")
+        alert(event.target.innerText)
     }
     )
 }
+}
 createAlert ()
 
+ // EXTRA Write a JavaScript functionality that will remove the corresponding parent card from the DOM, upon clicking on their “Continue reading” link
 function removeCard () {
     let card1 = document.querySelector(".jumbotron .lead a")
     let container = document.querySelector(".container")
+    let mainBody = document.querySelector("body")
     card1.addEventListener("click", function()
     {
         container.removeChild(document.querySelector(".jumbotron"))
     }
     )
-
+    
     let card2 = document.querySelector(".col-md-6:nth-of-type(1) .stretched-link")
-    console.log(card2)
-    card2.addEventListener("click")
+    card2.addEventListener("click", function()
+    {
+        document.querySelector(".col-md-6:nth-of-type(1)").innerHTML = ""
+    }
+    )
 
 
     let card3 = document.querySelector(".col-md-6:nth-of-type(2) .stretched-link")
-    console.log(card3)
+    card3.addEventListener("click", function()
+    {
+        document.querySelector(".col-md-6:nth-of-type(2)").innerHTML = ""
+    })
 }
 removeCard ()
 
